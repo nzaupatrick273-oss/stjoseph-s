@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leadership | ST JOSEPH'S MBIUNI YOUTH</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Montserrat',sans-serif;
+}
+
+body{
+    background:#f4f8fc;
+    color:#222;
+}
+
+header{
+    background:#0B3D91;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,.15);
+}
+
+.header-brand{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:15px;
+    margin-bottom:10px;
+}
+
+.logo-img{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #FFD54F;
+    box-shadow:0 0 20px rgba(255,213,79,.4);
+    transition:.3s;
+}
+
+.logo-img:hover{
+    transform:scale(1.05);
+    border-color:white;
+}
+
+header h1{
+    color:#fff;
+}
+
+nav a{
+    color:#fff;
+    text-decoration:none;
+    margin:0 12px;
+    font-weight:600;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#FFD54F;
+}
+
+.hero{
+    background:linear-gradient(rgba(11,61,145,.85),rgba(30,136,229,.85));
+    color:white;
+    text-align:center;
+    padding:70px 20px;
+}
+
+.hero h2{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    font-size:18px;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    padding:60px 0;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.1);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+/* ===== PHOTO STYLES ===== */
+.card .photo-wrapper{
+    position:relative;
+    width:130px;
+    height:130px;
+    margin:0 auto 15px;
+    cursor:pointer;
+    border-radius:50%;
+    overflow:hidden;
+    border:4px solid #1E88E5;
+    transition:.3s;
+}
+
+.card .photo-wrapper:hover{
+    border-color:#FFD54F;
+    transform:scale(1.05);
+}
+
+.card .photo-wrapper img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.card .photo-wrapper .hover-text{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    background:rgba(0,0,0,.7);
+    color:white;
+    font-size:11px;
+    padding:4px 0;
+    text-align:center;
+    opacity:0;
+    transition:.3s;
+    font-weight:600;
+}
+
+.card .photo-wrapper:hover .hover-text{
+    opacity:1;
+}
+
+.card h3{
+    color:#0B3D91;
+    margin-bottom:8px;
+}
+
+.card h4{
+    color:#1E88E5;
+    margin-bottom:12px;
+    font-size:17px;
+}
+
+.card p{
+    color:#555;
+    line-height:1.6;
+    margin-bottom:12px;
+}
+
+/* ===== PHONE LINK ===== */
+.card .phone-link{
+    display:inline-block;
+    padding:8px 20px;
+    background:#0B3D91;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-weight:600;
+    font-size:14px;
+    transition:.3s;
+}
+
+.card .phone-link:hover{
+    background:#1E88E5;
+    transform:translateY(-2px);
+}
+
+/* ===== LIGHTBOX ===== */
+.lightbox{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:rgba(0,0,0,.9);
+    z-index:9999;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    cursor:pointer;
+}
+
+.lightbox.open{
+    display:flex;
+}
+
+.lightbox img{
+    max-width:90%;
+    max-height:90vh;
+    border-radius:10px;
+    box-shadow:0 20px 60px rgba(0,0,0,.5);
+    object-fit:contain;
+}
+
+.lightbox .close-btn{
+    position:absolute;
+    top:20px;
+    right:30px;
+    color:white;
+    font-size:40px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.lightbox .close-btn:hover{
+    color:#FFD54F;
+    transform:rotate(90deg);
+}
+
+footer{
+    background:#0B3D91;
+    color:#fff;
+    text-align:center;
+    padding:20px;
+    margin-top:40px;
+}
+
+footer .footer-brand{
+    font-size:18px;
+    font-weight:800;
+}
+
+footer .footer-tagline{
+    color:#FFD54F;
+    font-weight:600;
+    letter-spacing:1px;
+    margin:5px 0;
+}
+
+footer .footer-copy{
+    font-size:14px;
+    opacity:.7;
+    margin-top:10px;
+}
+
+@media(max-width:768px){
+    .hero h2{
+        font-size:30px;
+    }
+    nav a{
+        display:inline-block;
+        margin:6px;
+    }
+    .cards{
+        grid-template-columns:1fr;
+        max-width:350px;
+        margin:auto;
+    }
+    .lightbox img{
+        max-width:95%;
+        max-height:80vh;
+    }
+    .header-brand{
+        flex-direction:column;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="header-brand">
+    <img src="C:\Users\nzaup\OneDrive\Desktop\website\IMG_20241208_161409.jpg" alt="St. Joseph's Mbiuni Youth" class="logo-img">
+    <h1>ST JOSEPH'S MBIUNI YOUTH</h1>
+</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="leadership.html">Leadership</a>
+<a href="events.html">Events</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h2>Our Leadership Team</h2>
+
+<p>Serving God and guiding the youth with faith, humility and dedication.</p>
+
+</section>
+
+<div class="container">
+
+<div class="cards">
+
+<!-- ===== CHAIRPERSON ===== -->
+<div class="card">
+    <div class="photo-wrapper" onclick="openLightbox('images/chairperson.jpg', 'Fabian Mbithi - Chairperson')">
+        <img src="images/chairperson.jpg" alt="Chairperson">
+        <div class="hover-text">👁️ Click to view</div>
+    </div>
+    <h3>Chairperson</h3>
+    <h4>Fabian Mbithi</h4>
+    <p>Provides leadership, coordinates youth activities and represents the youth in parish matters.</p>
+    <a href="tel:+" class="phone-link">📞 Call Fabian</a>
+</div>
+
+<!-- ===== VICE CHAIRPERSON ===== -->
+<div class="card">
+    <div class="photo-wrapper" onclick="openLightbox('images/vice-chair.jpg', 'Patrick Nzau - Vice Chairperson')">
+        <img src="C:\Users\nzaup\OneDrive\Desktop\website\IMG20241119151414.jpg" alt="Vice Chairperson">
+        <div class="hover-text">👁️ Click to view</div>
+    </div>
+    <h3>Vice Chairperson</h3>
+    <h4>Patrick Nzau</h4>
+    <p>Assists the Chairperson and oversees youth programs and meetings.</p>
+    <a href="tel:+254714298946" class="phone-link">📞 Call Patrick</a>
+</div>
+
+<!-- ===== SECRETARY ===== -->
+<div class="card">
+    <div class="photo-wrapper" onclick="openLightbox('images/secretary.jpg', 'Monicah Katulu - Secretary')">
+        <img src="C:\Users\nzaup\OneDrive\Desktop\website\IMG20250101150818.jpg" alt="Secretary">
+        <div class="hover-text">👁️ Click to view</div>
+    </div>
+    <h3>Secretary</h3>
+    <h4>Monicah Katulu</h4>
+    <p>Records meeting minutes, keeps official records and manages communication.</p>
+    <a href="tel:+254111235625" class="phone-link">📞 Call Monicah</a>
+</div>
+
+<!-- ===== VICE SECRETARY ===== -->
+<div class="card">
+    <div class="photo-wrapper" onclick="openLightbox('images/vice-secretary.jpg', 'Arwin Maswili - Vice Secretary')">
+        <img src="images/vice-secretary.jpg" alt="Vice Secretary">
+        <div class="hover-text">👁️ Click to view</div>
+    </div>
+    <h3>Vice Secretary</h3>
+    <h4>Arwin Maswili</h4>
+    <p>Assists the Secretary in managing records and communications.</p>
+    <a href="tel:+254723456789" class="phone-link">📞 Call Arwin</a>
+</div>
+
+<!-- ===== TREASURER ===== -->
+<div class="card">
+    <div class="photo-wrapper" onclick="openLightbox('images/treasurer.jpg', 'Joel Kioko - Treasurer')">
+        <img src="images/treasurer.jpg" alt="Treasurer">
+        <div class="hover-text">👁️ Click to view</div>
+    </div>
+    <h3>Treasurer</h3>
+    <h4>Joel Kioko</h4>
+    <p>Manages finances, budgeting and accountability of youth resources.</p>
+    <a href="tel:+254734567890" class="phone-link">📞 Call Joel</a>
+</div>
+
+<!-- ===== ORGANIZING SECRETARY ===== -->
+<div class="card">
+    <div class="photo-wrapper" onclick="openLightbox('images/organizing-secretary.jpg', 'Brian Kimeu - Organizing Secretary')">
+        <img src="images/organizing-secretary.jpg" alt="Organizing Secretary">
+        <div class="hover-text">👁️ Click to view</div>
+    </div>
+    <h3>Organizing Secretary</h3>
+    <h4>Brian Kimeu</h4>
+    <p>Coordinates events, meetings and youth activities within the parish.</p>
+    <a href="tel:+254745678901" class="phone-link">📞 Call Brian</a>
+</div>
+
+<!-- ===== SPIRITUAL COORDINATOR ===== -->
+<div class="card">
+    <div class="photo-wrapper" onclick="openLightbox('images/spiritual.jpg', 'Moni - Spiritual Coordinator')">
+        <img src="images/spiritual.jpg" alt="Spiritual Coordinator">
+        <div class="hover-text">👁️ Click to view</div>
+    </div>
+    <h3>Spiritual Coordinator</h3>
+    <h4>Moni</h4>
+    <p>Promotes prayer, retreats, Bible sharing and spiritual growth among members.</p>
+    <a href="tel:+254756789012" class="phone-link">📞 Call Moni</a>
+</div>
+
+</div>
+
+</div>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="close-btn" onclick="closeLightbox()">✕</span>
+    <img id="lightboxImage" src="" alt="Leader Photo">
+</div>
+
+<footer>
+
+<p class="footer-brand">ST JOSEPH'S MBIUNI YOUTH</p>
+
+<p class="footer-tagline">Faith • Unity • Service</p>
+
+<p class="footer-copy">&copy; <span id="year"></span> All Rights Reserved.</p>
+
+</footer>
+
+<script>
+// ===== AUTO YEAR =====
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// ===== LIGHTBOX =====
+function openLightbox(imageSrc, caption) {
+    const lightbox = document.getElementById('lightbox');
+    const img = document.getElementById('lightboxImage');
+    img.src = imageSrc;
+    img.alt = caption || 'Leader Photo';
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+// ===== KEYBOARD ESCAPE =====
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeLightbox();
+    }
+});
+</script>
+
+</body>
+</html>

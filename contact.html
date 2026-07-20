@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ST JOSEPH'S MBIUNI YOUTH | Contact Us</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+:root{
+--primary:#0B3D91;
+--secondary:#FFD54F;
+--accent:#1E88E5;
+--light:#f4f8fc;
+--white:#ffffff;
+--dark:#132238;
+--text:#444;
+--shadow:0 10px 30px rgba(0,0,0,.12);
+}
+
+body{
+font-family:'Montserrat',sans-serif;
+background:var(--light);
+color:var(--dark);
+line-height:1.7;
+}
+
+/* HEADER */
+
+header{
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(11,61,145,.97);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 8%;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.logo-img{
+width:60px;
+height:60px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid var(--secondary);
+box-shadow:0 0 20px rgba(255,213,79,.4);
+transition:.3s;
+}
+
+.logo-img:hover{
+transform:scale(1.05);
+border-color:white;
+}
+
+.brand h2{
+color:white;
+font-size:20px;
+}
+
+.brand small{
+color:#d8e8ff;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:25px;
+font-weight:600;
+transition:.3s;
+}
+
+nav a:hover{
+color:var(--secondary);
+}
+
+/* HERO */
+
+.hero{
+background:
+linear-gradient(rgba(11,61,145,.80),rgba(11,61,145,.80)),
+url("images/youth-group.jpg");
+background-size:cover;
+background-position:center;
+text-align:center;
+color:white;
+padding:100px 20px;
+}
+
+.hero h1{
+font-size:52px;
+margin-bottom:20px;
+font-weight:900;
+}
+
+.hero p{
+max-width:760px;
+margin:auto;
+font-size:20px;
+}
+
+/* CONTAINER */
+
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
+padding:80px 0;
+}
+
+/* CONTACT INFO */
+
+.info-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+margin-bottom:70px;
+}
+
+.info-card{
+background:white;
+padding:35px;
+border-radius:18px;
+box-shadow:var(--shadow);
+text-align:center;
+transition:.3s;
+}
+
+.info-card:hover{
+transform:translateY(-8px);
+}
+
+.info-card .icon{
+font-size:45px;
+margin-bottom:15px;
+}
+
+.info-card h3{
+color:var(--primary);
+margin-bottom:10px;
+}
+
+.info-card p{
+color:var(--text);
+}
+
+/* CONTACT SECTION */
+
+.contact-wrapper{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:start;
+}
+
+.contact-text h2{
+font-size:40px;
+color:var(--primary);
+margin-bottom:20px;
+}
+
+.contact-text p{
+margin-bottom:20px;
+color:var(--text);
+}
+
+/* ===== PUBLIC COMMENTS / GUESTBOOK ===== */
+.comment-section{
+background:white;
+padding:35px;
+border-radius:20px;
+box-shadow:var(--shadow);
+}
+
+.comment-section .section-title{
+font-size:24px;
+color:var(--primary);
+margin-bottom:8px;
+}
+
+.comment-section .section-subtitle{
+color:var(--text);
+font-size:14px;
+margin-bottom:20px;
+}
+
+.comment-section input,
+.comment-section textarea{
+width:100%;
+padding:15px;
+margin-bottom:15px;
+border:1px solid #d9d9d9;
+border-radius:10px;
+font-size:16px;
+font-family:inherit;
+transition:.3s;
+}
+
+.comment-section input:focus,
+.comment-section textarea:focus{
+border-color:var(--accent);
+outline:none;
+}
+
+.comment-section button{
+width:100%;
+padding:15px;
+border:none;
+border-radius:30px;
+background:linear-gradient(135deg,var(--primary),var(--accent));
+color:white;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+
+.comment-section button:hover{
+background:linear-gradient(135deg,var(--accent),var(--primary));
+transform:translateY(-2px);
+}
+
+/* ===== COMMENTS DISPLAY ===== */
+.comments-list{
+margin-top:30px;
+max-height:500px;
+overflow-y:auto;
+padding-right:10px;
+}
+
+.comments-list::-webkit-scrollbar{
+width:6px;
+}
+
+.comments-list::-webkit-scrollbar-track{
+background:#f1f1f1;
+border-radius:10px;
+}
+
+.comments-list::-webkit-scrollbar-thumb{
+background:var(--primary);
+border-radius:10px;
+}
+
+.comment-item{
+background:var(--light);
+padding:18px 20px;
+border-radius:12px;
+margin-bottom:12px;
+border-left:4px solid var(--primary);
+transition:.3s;
+}
+
+.comment-item:hover{
+transform:translateX(4px);
+}
+
+.comment-item .comment-name{
+font-weight:700;
+color:var(--primary);
+font-size:15px;
+}
+
+.comment-item .comment-date{
+font-size:11px;
+color:#999;
+margin-left:10px;
+}
+
+.comment-item .comment-text{
+color:var(--text);
+margin-top:5px;
+font-size:15px;
+line-height:1.6;
+}
+
+.comment-item .comment-actions{
+margin-top:8px;
+display:flex;
+gap:15px;
+}
+
+.comment-item .comment-actions button{
+background:none;
+border:none;
+color:#999;
+cursor:pointer;
+font-size:13px;
+transition:.3s;
+padding:0;
+}
+
+.comment-item .comment-actions button:hover{
+color:var(--danger);
+}
+
+.no-comments{
+text-align:center;
+color:#999;
+padding:30px;
+font-style:italic;
+}
+
+/* ===== TOAST ===== */
+.toast{
+position:fixed;
+bottom:30px;
+right:30px;
+padding:16px 28px;
+border-radius:12px;
+color:white;
+font-weight:600;
+font-size:15px;
+box-shadow:0 10px 40px rgba(0,0,0,.2);
+z-index:9999;
+animation:slideUp 0.4s ease;
+max-width:400px;
+}
+
+.toast.success{
+background:#4CAF50;
+}
+
+.toast.error{
+background:#E74C3C;
+}
+
+.toast.info{
+background:#0B3D91;
+}
+
+@keyframes slideUp{
+from{transform:translateY(100px);opacity:0;}
+to{transform:translateY(0);opacity:1;}
+}
+
+@keyframes slideDown{
+from{transform:translateY(0);opacity:1;}
+to{transform:translateY(100px);opacity:0;}
+}
+
+/* FOOTER */
+
+footer{
+margin-top:80px;
+background:var(--primary);
+color:white;
+text-align:center;
+padding:30px;
+}
+
+footer .footer-brand{
+font-size:20px;
+font-weight:800;
+}
+
+footer .footer-tagline{
+color:#FFD54F;
+font-weight:600;
+letter-spacing:1px;
+margin:5px 0;
+}
+
+footer .footer-copy{
+font-size:14px;
+opacity:.7;
+margin-top:10px;
+}
+
+@media(max-width:900px){
+
+header{
+flex-direction:column;
+gap:20px;
+}
+
+nav{
+text-align:center;
+}
+
+nav a{
+display:inline-block;
+margin:8px 12px;
+}
+
+.hero h1{
+font-size:38px;
+}
+
+.contact-wrapper{
+grid-template-columns:1fr;
+}
+
+.contact-text{
+text-align:center;
+}
+
+.comment-section{
+padding:25px;
+}
+
+}
+
+@media(max-width:480px){
+.hero h1{
+font-size:30px;
+}
+.hero p{
+font-size:16px;
+}
+.info-grid{
+grid-template-columns:1fr;
+}
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="brand">
+
+<img src="C:\Users\nzaup\OneDrive\Desktop\website\IMG_20241208_161409.jpg" alt="St. Joseph's Mbiuni Youth" class="logo-img">
+
+<div>
+<h2>ST JOSEPH'S MBIUNI YOUTH</h2>
+<small>Faith • Unity • Service</small>
+</div>
+
+</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="leadership.html">Leadership</a>
+<a href="events.html">Events</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>Contact Us</h1>
+
+<p>
+We would love to hear from you. Leave a comment below, share your thoughts, or send us a prayer request.
+</p>
+
+</section>
+
+<div class="container">
+
+<!-- INFO CARDS -->
+<div class="info-grid">
+
+<div class="info-card">
+<div class="icon">📍</div>
+<h3>Location</h3>
+<p>St. Joseph's Mbiuni Catholic Church<br>Mbiuni, Kenya</p>
+</div>
+
+<div class="info-card">
+<div class="icon">📞</div>
+<h3>Phone</h3>
+<p>+254 714298946</p>
+</div>
+
+<div class="info-card">
+<div class="icon">✉️</div>
+<h3>Email</h3>
+<p>info@stjosephsmbiuniyouth.org</p>
+</div>
+
+<div class="info-card">
+<div class="icon">🕒</div>
+<h3>Youth Meetings</h3>
+<p>Every Sunday<br>After Holy Mass</p>
+</div>
+
+</div>
+
+<!-- CONTACT + COMMENTS -->
+<div class="contact-wrapper">
+
+<div class="contact-text">
+
+<h2>📖 Guestbook</h2>
+
+<p>
+Share your thoughts, prayer requests, encouragement, or just say hello! All comments are public and visible to our community.
+</p>
+
+<p>
+Whether you're a member, visitor, or friend of St. Joseph's Mbiuni Youth, we'd love to hear from you.
+</p>
+
+</div>
+
+<!-- PUBLIC COMMENTS SECTION -->
+<div class="comment-section">
+
+<h3 class="section-title">💬 Leave a Comment</h3>
+<p class="section-subtitle">Your message will be visible to everyone</p>
+
+<form id="commentForm">
+
+<input type="text" id="commentName" placeholder="Your Name" required>
+
+<input type="text" id="commentLocation" placeholder="Your Location (e.g., Mbiuni, Kenya)">
+
+<textarea id="commentMessage" rows="4" placeholder="Write your message, prayer request, or encouragement..." required></textarea>
+
+<button type="submit">📤 Post Comment</button>
+
+</form>
+
+<!-- Comments Display -->
+<div class="comments-list" id="commentsList">
+
+<!-- Comment will appear here dynamically -->
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+<p class="footer-brand">ST JOSEPH'S MBIUNI YOUTH</p>
+
+<p class="footer-tagline">Faith • Unity • Service</p>
+
+<p class="footer-copy">&copy; <span id="year"></span> All Rights Reserved.</p>
+
+</footer>
+
+<script>
+
+// ===== AUTO YEAR =====
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// ===== MOBILE MENU =====
+const toggle = document.querySelector('.nav-toggle');
+const nav = document.querySelector('nav');
+
+// ===== COMMENTS SYSTEM =====
+
+// Load comments from localStorage
+function loadComments() {
+    const comments = JSON.parse(localStorage.getItem('publicComments')) || [];
+    return comments;
+}
+
+// Save comments to localStorage
+function saveComments(comments) {
+    localStorage.setItem('publicComments', JSON.stringify(comments));
+}
+
+// Format date
+function formatDate(date) {
+    return new Date(date).toLocaleDateString('en-KE', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+}
+
+// Render comments
+function renderComments() {
+    const container = document.getElementById('commentsList');
+    const comments = loadComments();
+    
+    if (comments.length === 0) {
+        container.innerHTML = `
+            <div class="no-comments">
+                ✨ No comments yet. Be the first to leave a message!
+            </div>
+        `;
+        return;
+    }
+    
+    // Sort newest first
+    comments.sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    container.innerHTML = comments.map((comment, index) => `
+        <div class="comment-item" data-id="${index}">
+            <div>
+                <span class="comment-name">${escapeHtml(comment.name)}</span>
+                ${comment.location ? `<span class="comment-location" style="color:#999;font-size:12px;">📍 ${escapeHtml(comment.location)}</span>` : ''}
+                <span class="comment-date">${formatDate(comment.date)}</span>
+            </div>
+            <div class="comment-text">${escapeHtml(comment.message)}</div>
+            <div class="comment-actions">
+                <button onclick="deleteComment(${index})" style="color:#999;background:none;border:none;cursor:pointer;font-size:12px;">🗑️ Remove</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Escape HTML to prevent XSS
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// Delete comment
+function deleteComment(index) {
+    if (confirm('Are you sure you want to remove this comment?')) {
+        const comments = loadComments();
+        comments.splice(index, 1);
+        saveComments(comments);
+        renderComments();
+        showToast('Comment removed successfully', 'info');
+    }
+}
+
+// Show toast notification
+function showToast(message, type = 'success') {
+    const existing = document.querySelector('.toast');
+    if (existing) existing.remove();
+    
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.style.animation = 'slideDown 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+    }, 4000);
+}
+
+// Handle comment submission
+document.getElementById('commentForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('commentName').value.trim();
+    const location = document.getElementById('commentLocation').value.trim();
+    const message = document.getElementById('commentMessage').value.trim();
+    
+    if (!name || !message) {
+        showToast('Please fill in your name and message', 'error');
+        return;
+    }
+    
+    const comments = loadComments();
+    comments.push({
+        name: name,
+        location: location || '',
+        message: message,
+        date: new Date().toISOString()
+    });
+    
+    saveComments(comments);
+    renderComments();
+    
+    // Reset form
+    document.getElementById('commentForm').reset();
+    
+    showToast('✅ Your comment has been posted!', 'success');
+});
+
+// ===== INIT =====
+renderComments();
+
+</script>
+
+</body>
+</html>

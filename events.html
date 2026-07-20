@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ST JOSEPH'S MBIUNI YOUTH | Events</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Montserrat',sans-serif;
+}
+
+:root{
+--primary:#0B3D91;
+--secondary:#FFD54F;
+--light:#f5f8fc;
+--dark:#132238;
+}
+
+body{
+background:var(--light);
+color:var(--dark);
+}
+
+/* HEADER */
+
+header{
+background:var(--primary);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 8%;
+color:white;
+flex-wrap:wrap;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.logo-img{
+width:60px;
+height:60px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid var(--secondary);
+box-shadow:0 0 20px rgba(255,213,79,.4);
+transition:.3s;
+}
+
+.logo-img:hover{
+transform:scale(1.05);
+border-color:white;
+}
+
+.logo h2{
+font-size:20px;
+}
+
+.logo small{
+color:#d8e8ff;
+font-size:12px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:18px;
+font-weight:600;
+}
+
+nav a:hover{
+color:var(--secondary);
+}
+
+/* HERO */
+
+.hero{
+background:linear-gradient(rgba(11,61,145,.8),rgba(11,61,145,.8)),
+url("images/youth-group.jpg");
+background-size:cover;
+background-position:center;
+padding:90px 20px;
+text-align:center;
+color:white;
+}
+
+.hero h1{
+font-size:45px;
+margin-bottom:15px;
+}
+
+.hero p{
+max-width:700px;
+margin:auto;
+}
+
+/* EVENTS */
+
+.events{
+width:90%;
+max-width:1100px;
+margin:60px auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 8px 20px rgba(0,0,0,.12);
+text-align:center;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card h2{
+color:var(--primary);
+margin:15px 0;
+}
+
+.card p{
+color:#555;
+}
+
+/* CTA */
+
+.cta{
+background:var(--primary);
+color:white;
+text-align:center;
+padding:60px 20px;
+}
+
+.cta h2{
+margin-bottom:15px;
+}
+
+.cta a{
+display:inline-block;
+margin-top:20px;
+padding:14px 30px;
+background:var(--secondary);
+color:var(--primary);
+text-decoration:none;
+border-radius:30px;
+font-weight:bold;
+}
+
+/* FOOTER */
+
+footer{
+background:var(--primary);
+color:white;
+text-align:center;
+padding:25px;
+}
+
+footer .footer-brand{
+font-size:18px;
+font-weight:800;
+}
+
+footer .footer-tagline{
+color:#FFD54F;
+font-weight:600;
+letter-spacing:1px;
+margin:5px 0;
+}
+
+footer .footer-copy{
+font-size:14px;
+opacity:.7;
+margin-top:10px;
+}
+
+@media(max-width:768px){
+
+header{
+flex-direction:column;
+gap:15px;
+}
+
+nav{
+text-align:center;
+}
+
+nav a{
+display:inline-block;
+margin:8px;
+}
+
+.hero h1{
+font-size:34px;
+}
+
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<img src="C:\Users\nzaup\OneDrive\Desktop\website\IMG_20241208_161409.jpg" alt="St. Joseph's Mbiuni Youth" class="logo-img">
+
+<div>
+<h2>ST JOSEPH'S MBIUNI YOUTH</h2>
+<small>Faith • Unity • Service</small>
+</div>
+
+</div>
+
+<nav>
+
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="leadership.html">Leadership</a>
+<a href="events.html">Events</a>
+<a href="contact.html">Contact</a>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>Youth Events & Activities</h1>
+
+<p>
+Growing together in Christ through fellowship, prayer and service.
+</p>
+
+</section>
+
+<section class="events">
+
+<div class="card">
+
+<h2>🏠 Home Visits</h2>
+
+<p>
+Visiting members and families to pray together, encourage one another and strengthen our Christian community.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>🎉 Festivals</h2>
+
+<p>
+Participating in parish celebrations, youth festivals and special Church events with joy and unity.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>🚶 Faith Walks</h2>
+
+<p>
+Walking together in faith through pilgrimages, nature walks and spiritual reflections.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>🤝 Youth Meetings</h2>
+
+<p>
+Regular meetings for prayer, planning activities, Bible sharing and strengthening friendships.
+</p>
+
+</div>
+
+</section>
+
+<section class="cta">
+
+<h2>Join Our Youth Activities</h2>
+
+<p>Everyone is welcome to grow with us in faith, friendship and service.</p>
+
+<a href="contact.html">Become a Member</a>
+
+</section>
+
+<footer>
+
+<p class="footer-brand">ST JOSEPH'S MBIUNI YOUTH</p>
+
+<p class="footer-tagline">Faith • Unity • Service</p>
+
+<p class="footer-copy">&copy; <span id="year"></span> All Rights Reserved.</p>
+
+</footer>
+
+<script>
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+</script>
+
+</body>
+</html>

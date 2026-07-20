@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ST JOSEPH'S MBIUNI YOUTH | Home</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Montserrat',sans-serif;
+}
+
+body{
+background:#f4f8fc;
+color:#132238;
+}
+
+header{
+background:#0B3D91;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 8%;
+flex-wrap:wrap;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:15px;
+font-size:24px;
+font-weight:800;
+}
+
+.logo-img{
+width:60px;
+height:60px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid #FFD54F;
+box-shadow:0 0 20px rgba(255,213,79,.4);
+transition:.3s;
+}
+
+.logo-img:hover{
+transform:scale(1.05);
+border-color:white;
+}
+
+.logo-text{
+color:white;
+font-size:20px;
+font-weight:800;
+}
+
+.logo-text small{
+display:block;
+font-size:12px;
+font-weight:400;
+color:#d8e8ff;
+letter-spacing:1px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:0 12px;
+font-weight:600;
+transition:.3s;
+}
+
+nav a:hover{
+color:#FFD54F;
+}
+
+.hero{
+text-align:center;
+padding:90px 20px;
+background:linear-gradient(rgba(11,61,145,.8),rgba(11,61,145,.8)),
+url("images/youth-group.jpg");
+background-size:cover;
+background-position:center;
+color:white;
+}
+
+.hero h1{
+font-size:48px;
+margin-bottom:20px;
+}
+
+.hero p{
+max-width:700px;
+margin:auto;
+line-height:1.8;
+}
+
+.buttons{
+margin-top:30px;
+}
+
+.buttons a{
+display:inline-block;
+padding:12px 28px;
+margin:8px;
+border-radius:30px;
+text-decoration:none;
+font-weight:bold;
+}
+
+.btn1{
+background:#FFD54F;
+color:#0B3D91;
+}
+
+.btn1:hover{
+background:#FFC107;
+transform:translateY(-2px);
+transition:.3s;
+}
+
+.btn2{
+background:white;
+color:#0B3D91;
+}
+
+.btn2:hover{
+background:#f0f0f0;
+transform:translateY(-2px);
+transition:.3s;
+}
+
+.section{
+width:90%;
+max-width:1100px;
+margin:60px auto;
+text-align:center;
+}
+
+.section h2{
+font-size:36px;
+color:#0B3D91;
+margin-bottom:10px;
+}
+
+.section h2::after{
+content:"";
+display:block;
+width:60px;
+height:4px;
+background:#FFD54F;
+margin:10px auto 0;
+border-radius:4px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-top:30px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+.card h3{
+color:#0B3D91;
+margin-bottom:10px;
+font-size:20px;
+}
+
+.card p{
+color:#555;
+line-height:1.6;
+}
+
+.scripture-section{
+background:#0B3D91;
+color:white;
+padding:60px 20px;
+text-align:center;
+margin:60px 0 0;
+}
+
+.scripture-section h2{
+font-size:36px;
+margin-bottom:10px;
+}
+
+.scripture-section h2::after{
+content:"";
+display:block;
+width:60px;
+height:4px;
+background:#FFD54F;
+margin:10px auto 0;
+border-radius:4px;
+}
+
+.scripture-section blockquote{
+font-size:24px;
+font-style:italic;
+max-width:800px;
+margin:20px auto 10px;
+line-height:1.8;
+}
+
+.scripture-section .ref{
+font-weight:bold;
+color:#FFD54F;
+font-size:18px;
+}
+
+footer{
+background:#0B3D91;
+color:white;
+text-align:center;
+padding:30px 20px;
+margin-top:0;
+}
+
+footer .footer-brand{
+font-size:20px;
+font-weight:800;
+}
+
+footer .footer-tagline{
+color:#FFD54F;
+font-weight:600;
+letter-spacing:1px;
+margin:5px 0;
+}
+
+footer .footer-copy{
+font-size:14px;
+opacity:.7;
+margin-top:10px;
+}
+
+@media(max-width:768px){
+
+header{
+flex-direction:column;
+}
+
+.logo{
+margin-bottom:10px;
+}
+
+nav{
+margin-top:15px;
+text-align:center;
+}
+
+nav a{
+display:inline-block;
+margin:8px 12px;
+}
+
+.hero h1{
+font-size:34px;
+}
+
+.hero{
+padding:60px 20px;
+}
+
+.section h2{
+font-size:28px;
+}
+
+.scripture-section blockquote{
+font-size:20px;
+}
+
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+    <img src="C:\Users\nzaup\OneDrive\Desktop\website\IMG_20241208_161409.jpg" alt="St. Joseph's Mbiuni Youth" class="logo-img">
+    <div class="logo-text">
+        ST JOSEPH'S MBIUNI YOUTH
+        <small>Faith • Unity • Service</small>
+    </div>
+</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="leadership.html">Leadership</a>
+<a href="events.html">Events</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>Growing Together in Faith</h1>
+
+<p>
+Welcome to <strong>ST JOSEPH'S MBIUNI YOUTH</strong>.
+We are a vibrant Catholic youth community dedicated to prayer, fellowship, leadership, service and evangelization.
+</p>
+
+<div class="buttons">
+<a href="about.html" class="btn1">Learn More</a>
+<a href="events.html" class="btn2">Upcoming Events</a>
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>Our Activities</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>🏠 Home Visits</h3>
+<p>Sharing love and supporting families in our community.</p>
+</div>
+
+<div class="card">
+<h3>🎉 Festivals</h3>
+<p>Celebrating faith through joyful youth gatherings.</p>
+</div>
+
+<div class="card">
+<h3>🚶 Faith Walks</h3>
+<p>Building friendship and unity through organized walks.</p>
+</div>
+
+<div class="card">
+<h3>👥 Youth Meetings</h3>
+<p>Regular meetings for prayer, planning and fellowship.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="scripture-section">
+
+<h2>Scripture</h2>
+
+<blockquote>
+"Let no one despise your youth, but set the believers an example in speech, in conduct, in love, in faith and in purity."
+</blockquote>
+
+<p class="ref">— 1 Timothy 4:12</p>
+
+</section>
+
+<footer>
+
+<p class="footer-brand">ST JOSEPH'S MBIUNI YOUTH</p>
+
+<p class="footer-tagline">Faith • Unity • Service</p>
+
+<p class="footer-copy">&copy; <span id="year"></span> All Rights Reserved.</p>
+
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
