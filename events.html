@@ -121,17 +121,26 @@ box-shadow:0 10px 40px rgba(11,61,145,.3);
 text-align:center;
 position:relative;
 z-index:2;
+transition:all 0.5s ease;
 }
 
-.countdown-section h3{
+.countdown-section .countdown-title{
 font-size:18px;
 font-weight:600;
 margin-bottom:15px;
 letter-spacing:1px;
 }
 
-.countdown-section h3 span{
+.countdown-section .countdown-title .event-highlight{
 color:var(--secondary);
+cursor:pointer;
+transition:0.3s;
+padding:2px 10px;
+border-radius:10px;
+}
+
+.countdown-section .countdown-title .event-highlight:hover{
+background:rgba(255,213,79,0.2);
 }
 
 .countdown-timer{
@@ -147,6 +156,12 @@ padding:12px 20px;
 border-radius:12px;
 min-width:70px;
 backdrop-filter:blur(4px);
+transition:0.3s;
+}
+
+.countdown-timer .time-block:hover{
+background:rgba(255,255,255,.25);
+transform:scale(1.05);
 }
 
 .countdown-timer .time-block .number{
@@ -171,6 +186,13 @@ border-radius:12px;
 font-weight:800;
 font-size:20px;
 display:none;
+}
+
+.countdown-click-hint{
+font-size:13px;
+opacity:0.7;
+margin-top:10px;
+font-weight:400;
 }
 
 /* ========================================
@@ -249,11 +271,18 @@ vertical-align:middle;
 }
 
 .events-table tbody tr{
-transition:.3s;
+transition:0.3s;
+cursor:pointer;
 }
 
 .events-table tbody tr:hover{
 background:#f0f6fc;
+transform:scale(1.01);
+}
+
+.events-table tbody tr.active{
+background:#e3eef9;
+border-left:4px solid var(--secondary);
 }
 
 .events-table tbody tr:last-child td{
@@ -292,6 +321,12 @@ color:var(--primary);
 
 .events-table .event-name{
 font-weight:600;
+}
+
+.events-table .event-name .click-icon{
+font-size:12px;
+opacity:0.5;
+margin-left:6px;
 }
 
 .events-table .event-venue{
@@ -643,9 +678,14 @@ Stay updated on all our upcoming events, activities, and fellowship opportunitie
 </section>
 
 <!-- ===== COUNTDOWN TIMER ===== -->
-<div class="countdown-section">
+<div class="countdown-section" id="countdownSection">
 
-<h3>⏳ Next Event: <span id="nextEventName">Youth Festival 2026</span></h3>
+<div class="countdown-title">
+    ⏳ Next Event: 
+    <span class="event-highlight" id="countdownEventName" onclick="showNextEvent()">
+        Youth Festival 2026
+    </span>
+</div>
 
 <div class="countdown-timer" id="countdownTimer">
 
@@ -675,6 +715,8 @@ Stay updated on all our upcoming events, activities, and fellowship opportunitie
 🎉 Event is happening now!
 </div>
 
+<p class="countdown-click-hint">💡 Click any event in the table below to see its countdown</p>
+
 </div>
 
 <!-- ===== EVENTS TABLE ===== -->
@@ -682,7 +724,7 @@ Stay updated on all our upcoming events, activities, and fellowship opportunitie
 
 <h2>📋 Upcoming Events</h2>
 
-<p class="subtitle">Plan ahead and join us for these youth activities</p>
+<p class="subtitle">Click any event to view its countdown ⬇️</p>
 
 <div class="table-wrapper">
 
@@ -756,56 +798,56 @@ Stay updated on all our upcoming events, activities, and fellowship opportunitie
 <script>
 
 // ========================================
-// DATA
+// DATA - EDIT YOUR EVENTS HERE
 // ========================================
 
 const events = [
     {
         id: 1,
-        day: "22 July 2026",
-        event: "🏠 Home Visits",
+        day: "12 August 2026",
+        event: "prayer Retreat & Seminar",
         venue: "Mbiuni Parish",
         time: "9:00 AM",
         status: "upcoming",
-        date: new Date(2026, 6, 22).getTime() // July 22, 2026
+        date: new Date(2026, 7, 12).getTime()
     },
     {
         id: 2,
         day: "22 August 2026",
         event: "🎉 Youth Festival 2026",
-        venue: "St. Joseph's Grounds",
+        venue: "St. Joseph's Church Grounds",
         time: "9:00 AM",
         status: "upcoming",
         date: new Date(2026, 7, 22).getTime()
     },
-   
+    {
+        id: 3,
+        day: "Every Sunday",
+        event: "🚶 Faith Walks",
+        venue: "Meet at Church",
+        time: "1:00 PM",
+        status: "ongoing",
+        date: null
+    },
     {
         id: 4,
-        day: "15 July 2026",
-        event: "🤝 Youth Meeting",
-        venue: "Youth Hall",
-        time: "4:00 PM",
+        day: "19 July 2026",
+        event: "🤝National Youth Meeting",
+        venue: "AMECEA Mass (CUEA)",
+        time: "all the day",
         status: "past",
-        date: new Date(2026, 6, 15).getTime()
+        date: new Date(2026, 6, 19).getTime()
     },
     {
         id: 5,
-        day: "10 August 2026",
-        event: "🙏 Prayer Night",
-        venue: "Church Sanctuary",
-        time: "7:00 PM",
-        status: "upcoming",
-        date: new Date(2026, 7, 10).getTime()
+        day: "Every Weekend",
+        event: "usafi kanisani",
+        venue: "kanisani",
+        time: "3:00 PM",
+        status: "ongoing",
+        date: null
     },
-    {
-        id: 6,
-        day: "20 August 2026",
-        event: "❤️ Charity Visit",
-        venue: "Mbiuni Community",
-        time: "8:00 AM",
-        status: "upcoming",
-        date: new Date(2026, 7, 20).getTime()
-    }
+
 ];
 
 // ========================================
@@ -818,13 +860,25 @@ document.getElementById("year").textContent = new Date().getFullYear();
 // COUNTDOWN TIMER
 // ========================================
 
-function startCountdown(targetDate) {
+let currentCountdownEvent = null;
+let countdownInterval = null;
+
+function startCountdown(targetDate, eventName) {
     const daysEl = document.getElementById('days');
     const hoursEl = document.getElementById('hours');
     const minutesEl = document.getElementById('minutes');
     const secondsEl = document.getElementById('seconds');
     const endedEl = document.getElementById('countdownEnded');
     const timerEl = document.getElementById('countdownTimer');
+    const nameEl = document.getElementById('countdownEventName');
+
+    // Update event name
+    nameEl.textContent = eventName.replace(/[^\w\s]/g, '').trim();
+
+    // Clear any existing interval
+    if (countdownInterval) {
+        clearInterval(countdownInterval);
+    }
 
     function update() {
         const now = new Date().getTime();
@@ -835,6 +889,9 @@ function startCountdown(targetDate) {
             endedEl.style.display = 'block';
             return;
         }
+
+        timerEl.style.display = 'flex';
+        endedEl.style.display = 'none';
 
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -848,24 +905,66 @@ function startCountdown(targetDate) {
     }
 
     update();
-    setInterval(update, 1000);
+    countdownInterval = setInterval(update, 1000);
 }
 
-// Find the next upcoming event
-function getNextEvent() {
+function showNextEvent() {
     const now = new Date().getTime();
     const upcoming = events
         .filter(e => e.status !== 'past' && e.date !== null)
         .sort((a, b) => a.date - b.date)
         .filter(e => e.date > now);
 
-    return upcoming.length > 0 ? upcoming[0] : null;
+    if (upcoming.length > 0) {
+        const event = upcoming[0];
+        startCountdown(event.date, event.event);
+        highlightEvent(event.id);
+    }
 }
 
-const nextEvent = getNextEvent();
-if (nextEvent) {
-    document.getElementById('nextEventName').textContent = nextEvent.event.replace(/[^\w\s]/g, '').trim();
-    startCountdown(nextEvent.date);
+function showEventCountdown(eventId) {
+    const event = events.find(e => e.id === eventId);
+    if (!event) return;
+
+    // If event is past or has no date, show a message
+    if (event.status === 'past') {
+        document.getElementById('countdownTimer').style.display = 'none';
+        document.getElementById('countdownEnded').style.display = 'block';
+        document.getElementById('countdownEnded').textContent = '📋 This event has already passed';
+        document.getElementById('countdownEventName').textContent = event.event.replace(/[^\w\s]/g, '').trim();
+        highlightEvent(event.id);
+        return;
+    }
+
+    if (event.date === null) {
+        // Recurring event like "Every Sunday"
+        document.getElementById('countdownTimer').style.display = 'none';
+        document.getElementById('countdownEnded').style.display = 'block';
+        document.getElementById('countdownEnded').textContent = '🔄 This is a recurring event - Join us!';
+        document.getElementById('countdownEventName').textContent = event.event.replace(/[^\w\s]/g, '').trim();
+        highlightEvent(event.id);
+        return;
+    }
+
+    startCountdown(event.date, event.event);
+    highlightEvent(event.id);
+}
+
+// ========================================
+// HIGHLIGHT SELECTED EVENT
+// ========================================
+
+function highlightEvent(eventId) {
+    const rows = document.querySelectorAll('#eventsTableBody tr');
+    rows.forEach(row => {
+        row.classList.remove('active');
+        const rowId = parseInt(row.dataset.eventId);
+        if (rowId === eventId) {
+            row.classList.add('active');
+            // Scroll to the row
+            row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    });
 }
 
 // ========================================
@@ -899,10 +998,13 @@ function renderEventsTable() {
             `<a href="contact.html">📝 RSVP</a>`;
 
         html += `
-            <tr>
+            <tr data-event-id="${event.id}" onclick="showEventCountdown(${event.id})">
                 <td>${count}</td>
                 <td class="event-day">${event.day}</td>
-                <td class="event-name">${event.event}</td>
+                <td class="event-name">
+                    ${event.event}
+                    <span class="click-icon">👆</span>
+                </td>
                 <td class="event-venue">${event.venue}</td>
                 <td class="event-time">${event.time}</td>
                 <td>${statusLabels[event.status]}</td>
@@ -960,9 +1062,11 @@ function renderCalendar(month, year) {
 
         // Check if this day has an event
         let hasEvent = false;
-        calendarEvents.forEach(eDate => {
+        let eventId = null;
+        calendarEvents.forEach((eDate, index) => {
             if (eDate.toDateString() === dateObj.toDateString()) {
                 hasEvent = true;
+                eventId = index;
             }
         });
 
@@ -972,7 +1076,16 @@ function renderCalendar(month, year) {
 
         const dot = hasEvent ? `<span class="event-dot"></span>` : '';
 
-        html += `<div class="${classes}" onclick="alert('${day} ${monthNames[month]} ${year}')">
+        // Click on calendar day to show event
+        let onclick = `alert('${day} ${monthNames[month]} ${year}')`;
+        if (hasEvent && eventId !== null) {
+            const event = events.find((e, i) => i === eventId && e.date !== null);
+            if (event) {
+                onclick = `showEventCountdown(${event.id})`;
+            }
+        }
+
+        html += `<div class="${classes}" onclick="${onclick}">
             ${day}
             ${dot}
         </div>`;
@@ -995,6 +1108,12 @@ function changeMonth(delta) {
 
 // Initial calendar render
 renderCalendar(currentMonth, currentYear);
+
+// ========================================
+// INIT - Show first upcoming event
+// ========================================
+
+showNextEvent();
 
 </script>
 
