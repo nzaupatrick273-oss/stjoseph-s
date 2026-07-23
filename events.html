@@ -179,13 +179,26 @@ letter-spacing:1px;
 }
 
 .countdown-ended{
-background:var(--secondary);
-color:var(--primary);
 padding:12px 30px;
 border-radius:12px;
 font-weight:800;
 font-size:20px;
 display:none;
+}
+
+.countdown-ended.past{
+background:#E74C3C;
+color:white;
+}
+
+.countdown-ended.ongoing{
+background:#FFD54F;
+color:#0B3D91;
+}
+
+.countdown-ended.upcoming{
+background:#27AE60;
+color:white;
 }
 
 .countdown-click-hint{
@@ -681,9 +694,8 @@ Stay updated on all our upcoming events, activities, and fellowship opportunitie
 <div class="countdown-section" id="countdownSection">
 
 <div class="countdown-title">
-    ⏳ Next Event: 
-    <span class="event-highlight" id="countdownEventName" onclick="showNextEvent()">
-        Youth Festival 2026
+    ⏳ <span id="countdownEventName" class="event-highlight" onclick="showNextEvent()">
+        Prayer Retreat & Seminar
     </span>
 </div>
 
@@ -722,7 +734,7 @@ Stay updated on all our upcoming events, activities, and fellowship opportunitie
 <!-- ===== EVENTS TABLE ===== -->
 <section class="events-section">
 
-<h2>📋 Upcoming Events</h2>
+<h2>📋 Events Calendar</h2>
 
 <p class="subtitle">Click any event to view its countdown ⬇️</p>
 
@@ -805,7 +817,7 @@ const events = [
     {
         id: 1,
         day: "12 August 2026",
-        event: "prayer Retreat & Seminar",
+        event: "🙏 Prayer Retreat & Seminar",
         venue: "Mbiuni Parish",
         time: "9:00 AM",
         status: "upcoming",
@@ -832,22 +844,21 @@ const events = [
     {
         id: 4,
         day: "19 July 2026",
-        event: "🤝National Youth Meeting",
+        event: "🤝 National Youth Meeting",
         venue: "AMECEA Mass (CUEA)",
-        time: "all the day",
+        time: "All day",
         status: "past",
         date: new Date(2026, 6, 19).getTime()
     },
     {
         id: 5,
         day: "Every Weekend",
-        event: "usafi kanisani",
-        venue: "kanisani",
+        event: "🧹 Usafi Kanisani",
+        venue: "Kanisani",
         time: "3:00 PM",
         status: "ongoing",
         date: null
-    },
-
+    }
 ];
 
 // ========================================
@@ -860,7 +871,6 @@ document.getElementById("year").textContent = new Date().getFullYear();
 // COUNTDOWN TIMER
 // ========================================
 
-let currentCountdownEvent = null;
 let countdownInterval = null;
 
 function startCountdown(targetDate, eventName) {
@@ -868,12 +878,16 @@ function startCountdown(targetDate, eventName) {
     const hoursEl = document.getElementById('hours');
     const minutesEl = document.getElementById('minutes');
     const secondsEl = document.getElementById('seconds');
-    const endedEl = document.getElementById('countdownEnded');
     const timerEl = document.getElementById('countdownTimer');
+    const endedEl = document.getElementById('countdownEnded');
     const nameEl = document.getElementById('countdownEventName');
 
     // Update event name
     nameEl.textContent = eventName.replace(/[^\w\s]/g, '').trim();
+
+    // Show timer, hide ended message
+    timerEl.style.display = 'flex';
+    endedEl.style.display = 'none';
 
     // Clear any existing interval
     if (countdownInterval) {
@@ -887,11 +901,10 @@ function startCountdown(targetDate, eventName) {
         if (distance < 0) {
             timerEl.style.display = 'none';
             endedEl.style.display = 'block';
+            endedEl.textContent = '📋 This event has already passed';
+            endedEl.className = 'countdown-ended past';
             return;
         }
-
-        timerEl.style.display = 'flex';
-        endedEl.style.display = 'none';
 
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -911,14 +924,20 @@ function startCountdown(targetDate, eventName) {
 function showNextEvent() {
     const now = new Date().getTime();
     const upcoming = events
-        .filter(e => e.status !== 'past' && e.date !== null)
-        .sort((a, b) => a.date - b.date)
-        .filter(e => e.date > now);
+        .filter(e => e.status === 'upcoming' && e.date !== null && e.date > now)
+        .sort((a, b) => a.date - b.date);
 
     if (upcoming.length > 0) {
         const event = upcoming[0];
         startCountdown(event.date, event.event);
         highlightEvent(event.id);
+    } else {
+        // No upcoming events
+        document.getElementById('countdownTimer').style.display = 'none';
+        document.getElementById('countdownEnded').style.display = 'block';
+        document.getElementById('countdownEnded').textContent = '🎉 No upcoming events - Stay tuned!';
+        document.getElementById('countdownEnded').className = 'countdown-ended upcoming';
+        document.getElementById('countdownEventName').textContent = 'No upcoming events';
     }
 }
 
@@ -926,26 +945,47 @@ function showEventCountdown(eventId) {
     const event = events.find(e => e.id === eventId);
     if (!event) return;
 
-    // If event is past or has no date, show a message
+    const timerEl = document.getElementById('countdownTimer');
+    const endedEl = document.getElementById('countdownEnded');
+    const nameEl = document.getElementById('countdownEventName');
+
+    // Update event name
+    nameEl.textContent = event.event.replace(/[^\w\s]/g, '').trim();
+
+    // ===== PAST EVENTS =====
     if (event.status === 'past') {
-        document.getElementById('countdownTimer').style.display = 'none';
-        document.getElementById('countdownEnded').style.display = 'block';
-        document.getElementById('countdownEnded').textContent = '📋 This event has already passed';
-        document.getElementById('countdownEventName').textContent = event.event.replace(/[^\w\s]/g, '').trim();
+        timerEl.style.display = 'none';
+        endedEl.style.display = 'block';
+        endedEl.textContent = '📋 This event has already passed';
+        endedEl.className = 'countdown-ended past';
         highlightEvent(event.id);
         return;
     }
 
-    if (event.date === null) {
-        // Recurring event like "Every Sunday"
-        document.getElementById('countdownTimer').style.display = 'none';
-        document.getElementById('countdownEnded').style.display = 'block';
-        document.getElementById('countdownEnded').textContent = '🔄 This is a recurring event - Join us!';
-        document.getElementById('countdownEventName').textContent = event.event.replace(/[^\w\s]/g, '').trim();
+    // ===== ONGOING EVENTS (Recurring) =====
+    if (event.status === 'ongoing' || event.date === null) {
+        timerEl.style.display = 'none';
+        endedEl.style.display = 'block';
+        endedEl.textContent = '🔄 This is a recurring event - Join us today! 🎉';
+        endedEl.className = 'countdown-ended ongoing';
         highlightEvent(event.id);
         return;
     }
 
+    // ===== UPCOMING EVENTS =====
+    const now = new Date().getTime();
+    
+    // Check if event date is in the past (but status says upcoming)
+    if (event.date < now) {
+        timerEl.style.display = 'none';
+        endedEl.style.display = 'block';
+        endedEl.textContent = '📋 This event has already passed';
+        endedEl.className = 'countdown-ended past';
+        highlightEvent(event.id);
+        return;
+    }
+
+    // ===== START COUNTDOWN FOR UPCOMING EVENT =====
     startCountdown(event.date, event.event);
     highlightEvent(event.id);
 }
@@ -973,7 +1013,6 @@ function highlightEvent(eventId) {
 
 function renderEventsTable() {
     const tbody = document.getElementById('eventsTableBody');
-    const now = new Date().getTime();
 
     // Sort events: upcoming first, then ongoing, then past
     const sorted = [...events].sort((a, b) => {
