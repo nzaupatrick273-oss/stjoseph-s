@@ -154,7 +154,255 @@
       font-weight:700;
     }
 
-    /* MISSION */
+    /* ========================================
+       VERTICAL SCROLLABLE GALLERY
+       ======================================== */
+
+    .gallery-section{
+      margin-top:80px;
+    }
+
+    .gallery-section h2{
+      text-align:center;
+      color:var(--primary);
+      font-size:36px;
+      margin-bottom:10px;
+    }
+
+    .gallery-section h2::after{
+      content:"";
+      display:block;
+      width:60px;
+      height:4px;
+      background:var(--secondary);
+      margin:10px auto 0;
+      border-radius:4px;
+    }
+
+    .gallery-section .gallery-subtitle{
+      text-align:center;
+      color:#666;
+      margin-bottom:30px;
+      font-size:16px;
+    }
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+      gap:25px;
+      max-height:550px;
+      overflow-y:auto;
+      padding:15px 15px 20px;
+      border-radius:16px;
+      background:rgba(255,255,255,0.6);
+      scroll-behavior:smooth;
+    }
+
+    .gallery-grid::-webkit-scrollbar{
+      width:8px;
+    }
+
+    .gallery-grid::-webkit-scrollbar-track{
+      background:#e8ecf0;
+      border-radius:10px;
+    }
+
+    .gallery-grid::-webkit-scrollbar-thumb{
+      background:var(--primary);
+      border-radius:10px;
+    }
+
+    .gallery-grid::-webkit-scrollbar-thumb:hover{
+      background:#1E88E5;
+    }
+
+    .gallery-item{
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      transition:.3s;
+      background:white;
+      border:1px solid rgba(11,61,145,.06);
+      cursor:pointer;
+      position:relative;
+    }
+
+    .gallery-item:hover{
+      transform:translateY(-5px);
+      box-shadow:0 15px 40px rgba(0,0,0,.15);
+    }
+
+    .gallery-item img{
+      width:100%;
+      height:200px;
+      object-fit:cover;
+      display:block;
+      transition:.3s;
+    }
+
+    .gallery-item:hover img{
+      transform:scale(1.03);
+    }
+
+    .gallery-item .caption{
+      padding:14px 16px 16px;
+      text-align:center;
+    }
+
+    .gallery-item .caption h4{
+      color:var(--primary);
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .gallery-item .caption p{
+      color:#666;
+      font-size:12px;
+      margin-top:2px;
+    }
+
+    .gallery-item .view-badge{
+      position:absolute;
+      top:12px;
+      right:12px;
+      background:rgba(0,0,0,0.7);
+      color:white;
+      padding:5px 14px;
+      border-radius:20px;
+      font-size:11px;
+      font-weight:600;
+      opacity:0;
+      transition:.3s;
+    }
+
+    .gallery-item:hover .view-badge{
+      opacity:1;
+    }
+
+    .gallery-scroll-hint{
+      text-align:center;
+      margin-top:15px;
+      color:#999;
+      font-size:14px;
+    }
+
+    .gallery-scroll-hint span{
+      display:inline-block;
+      animation:bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce{
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(5px);}
+    }
+
+    /* ========================================
+       LIGHTBOX
+       ======================================== */
+
+    .lightbox{
+      display:none;
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      background:rgba(0,0,0,0.92);
+      z-index:9999;
+      align-items:center;
+      justify-content:center;
+      padding:30px;
+      animation:fadeIn 0.3s ease;
+    }
+
+    .lightbox.open{
+      display:flex;
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0;transform:scale(0.95);}
+      to{opacity:1;transform:scale(1);}
+    }
+
+    .lightbox-content{
+      max-width:900px;
+      width:100%;
+      max-height:90vh;
+      position:relative;
+      background:white;
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:0 30px 80px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-content img{
+      width:100%;
+      max-height:70vh;
+      object-fit:contain;
+      display:block;
+      background:#f5f5f5;
+    }
+
+    .lightbox-content .lightbox-caption{
+      padding:16px 24px;
+      background:white;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .lightbox-content .lightbox-caption .caption-text h4{
+      color:var(--primary);
+      font-size:17px;
+      font-weight:700;
+    }
+
+    .lightbox-content .lightbox-caption .caption-text p{
+      color:#666;
+      font-size:13px;
+    }
+
+    .lightbox-content .lightbox-caption .caption-actions{
+      display:flex;
+      gap:10px;
+    }
+
+    .lightbox-content .lightbox-caption .caption-actions button{
+      padding:9px 22px;
+      border:none;
+      border-radius:30px;
+      font-weight:700;
+      font-size:13px;
+      cursor:pointer;
+      transition:.3s;
+      font-family:'Montserrat',sans-serif;
+    }
+
+    .btn-download{
+      background:var(--primary);
+      color:white;
+    }
+
+    .btn-download:hover{
+      background:#1E88E5;
+      transform:translateY(-2px);
+    }
+
+    .btn-close-lightbox{
+      background:#E74C3C;
+      color:white;
+    }
+
+    .btn-close-lightbox:hover{
+      background:#c0392b;
+      transform:translateY(-2px);
+    }
+
+    /* ========================================
+       MISSION / VALUES / QUOTE
+       ======================================== */
 
     .cards{
       display:grid;
@@ -186,8 +434,6 @@
       font-size:55px;
       margin-bottom:15px;
     }
-
-    /* VALUES */
 
     .values{
       margin-top:80px;
@@ -226,8 +472,6 @@
       font-size:40px;
       margin-bottom:10px;
     }
-
-    /* QUOTE */
 
     .quote{
       margin-top:80px;
@@ -313,8 +557,47 @@
       .quote{
         padding:40px 25px;
       }
+
+      .gallery-grid{
+        grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
+        max-height:400px;
+      }
+
+      .lightbox-content{
+        max-width:100%;
+      }
+
+      .lightbox-content .lightbox-caption{
+        flex-direction:column;
+        text-align:center;
+      }
+
+      .lightbox-content .lightbox-caption .caption-actions{
+        width:100%;
+        justify-content:center;
+      }
     }
 
+    @media(max-width:480px){
+      .gallery-grid{
+        grid-template-columns:1fr 1fr;
+        max-height:350px;
+        gap:15px;
+        padding:10px;
+      }
+
+      .gallery-item img{
+        height:140px;
+      }
+
+      .gallery-item .caption h4{
+        font-size:12px;
+      }
+
+      .gallery-item .caption p{
+        font-size:10px;
+      }
+    }
   </style>
 
 </head>
@@ -358,6 +641,7 @@ Growing together in faith, love and service while inspiring young people to beco
 
 <div class="container">
 
+<!-- ===== ABOUT SECTION ===== -->
 <section class="about">
 
 <div>
@@ -389,6 +673,109 @@ Our youth fellowship welcomes every young person with love and encourages everyo
 </div>
 
 </section>
+
+<!-- ========================================
+     VERTICAL SCROLLABLE GALLERY
+     ======================================== -->
+
+<section class="gallery-section">
+
+<h2>📸 Our Youth in Action</h2>
+<p class="gallery-subtitle">Tap any photo to view full size and download ⬇️</p>
+
+<div class="gallery-grid" id="galleryGrid">
+
+  <!-- Photo 1 -->
+  <div class="gallery-item" onclick="openLightbox('images/IMG_20241208_161409.jpg', '🙏 Youth Fellowship', 'Gathered in faith and unity')">
+    <img src="images/IMG_20241208_161409.jpg" alt="Youth Fellowship">
+    <div class="view-badge">👁️ View</div>
+    <div class="caption">
+      <h4>🙏 Youth Fellowship</h4>
+      <p>Gathered in faith and unity</p>
+    </div>
+  </div>
+
+  <!-- Photo 2 -->
+  <div class="gallery-item" onclick="openLightbox('images/IMG_20241208_161409.jpg', '🎉 Youth Celebration', 'Celebrating faith with joy')">
+    <img src="images/IMG_20241208_161409.jpg" alt="Youth Celebration">
+    <div class="view-badge">👁️ View</div>
+    <div class="caption">
+      <h4>🎉 Youth Celebration</h4>
+      <p>Celebrating faith with joy</p>
+    </div>
+  </div>
+
+  <!-- Photo 3 -->
+  <div class="gallery-item" onclick="openLightbox('images/IMG_20241208_161409.jpg', '🚶 Faith Walk', 'Walking together in faith')">
+    <img src="images/IMG_20241208_161409.jpg" alt="Faith Walk">
+    <div class="view-badge">👁️ View</div>
+    <div class="caption">
+      <h4>🚶 Faith Walk</h4>
+      <p>Walking together in faith</p>
+    </div>
+  </div>
+
+  <!-- Photo 4 -->
+  <div class="gallery-item" onclick="openLightbox('images/IMG_20241208_161409.jpg', '❤️ Community Service', 'Serving with love')">
+    <img src="images/IMG_20241208_161409.jpg" alt="Community Service">
+    <div class="view-badge">👁️ View</div>
+    <div class="caption">
+      <h4>❤️ Community Service</h4>
+      <p>Serving with love</p>
+    </div>
+  </div>
+
+  <!-- Photo 5 -->
+  <div class="gallery-item" onclick="openLightbox('images/IMG_20241208_161409.jpg', '🎵 Choir Ministry', 'Leading worship through music')">
+    <img src="images/IMG_20241208_161409.jpg" alt="Choir Ministry">
+    <div class="view-badge">👁️ View</div>
+    <div class="caption">
+      <h4>🎵 Choir Ministry</h4>
+      <p>Leading worship through music</p>
+    </div>
+  </div>
+
+  <!-- Photo 6 -->
+  <div class="gallery-item" onclick="openLightbox('images/IMG_20241208_161409.jpg', '📖 Bible Study', 'Growing in God\'s Word')">
+    <img src="images/IMG_20241208_161409.jpg" alt="Bible Study">
+    <div class="view-badge">👁️ View</div>
+    <div class="caption">
+      <h4>📖 Bible Study</h4>
+      <p>Growing in God's Word</p>
+    </div>
+  </div>
+
+  <!-- Photo 7 -->
+  <div class="gallery-item" onclick="openLightbox('images/IMG_20241208_161409.jpg', '⚽ Sports Day', 'Building unity through sports')">
+    <img src="images/IMG_20241208_161409.jpg" alt="Sports Day">
+    <div class="view-badge">👁️ View</div>
+    <div class="caption">
+      <h4>⚽ Sports Day</h4>
+      <p>Building unity through sports</p>
+    </div>
+  </div>
+
+  <!-- Photo 8 -->
+  <div class="gallery-item" onclick="openLightbox('images/IMG_20241208_161409.jpg', '🤝 Youth Meeting', 'Planning and fellowship')">
+    <img src="images/IMG_20241208_161409.jpg" alt="Youth Meeting">
+    <div class="view-badge">👁️ View</div>
+    <div class="caption">
+      <h4>🤝 Youth Meeting</h4>
+      <p>Planning and fellowship</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="gallery-scroll-hint">
+  <span>⬇️ Scroll down to see more photos</span>
+</div>
+
+</section>
+
+<!-- ========================================
+     MISSION / VISION / MOTTO
+     ======================================== -->
 
 <div class="cards">
 
@@ -429,6 +816,10 @@ Walking together in faith, hope and love as one family in Christ while serving o
 </div>
 
 </div>
+
+<!-- ========================================
+     CORE VALUES
+     ======================================== -->
 
 <section class="values">
 
@@ -488,6 +879,10 @@ Walking together in faith, hope and love as one family in Christ while serving o
 
 </section>
 
+<!-- ========================================
+     SCRIPTURE QUOTE
+     ======================================== -->
+
 <section class="quote">
 
 <h2>Scripture Inspiration</h2>
@@ -514,9 +909,105 @@ Walking together in faith, hope and love as one family in Christ while serving o
 
 </footer>
 
+<!-- ========================================
+     LIGHTBOX
+     ======================================== -->
+
+<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+  <div class="lightbox-content">
+    <img id="lightboxImage" src="" alt="Gallery Photo">
+    <div class="lightbox-caption">
+      <div class="caption-text">
+        <h4 id="lightboxTitle">Photo Title</h4>
+        <p id="lightboxDescription">Photo description</p>
+      </div>
+      <div class="caption-actions">
+        <button class="btn-download" onclick="downloadImage()">⬇️ Download</button>
+        <button class="btn-close-lightbox" onclick="closeLightbox()">✕ Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 
+// ========================================
+// AUTO YEAR
+// ========================================
+
 document.getElementById("year").textContent = new Date().getFullYear();
+
+// ========================================
+// LIGHTBOX
+// ========================================
+
+let currentImageSrc = '';
+let currentImageTitle = '';
+
+function openLightbox(imageSrc, title, description) {
+    const lightbox = document.getElementById('lightbox');
+    const img = document.getElementById('lightboxImage');
+    const titleEl = document.getElementById('lightboxTitle');
+    const descEl = document.getElementById('lightboxDescription');
+
+    img.src = imageSrc;
+    img.alt = title || 'Gallery Photo';
+    titleEl.textContent = title || 'Photo';
+    descEl.textContent = description || '';
+    currentImageSrc = imageSrc;
+    currentImageTitle = title || 'Photo';
+
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+function closeLightboxOutside(event) {
+    // Close only if clicking on the background (not the content)
+    if (event.target === event.currentTarget) {
+        closeLightbox();
+    }
+}
+
+// ========================================
+// DOWNLOAD IMAGE
+// ========================================
+
+function downloadImage() {
+    if (!currentImageSrc) {
+        alert('No image to download');
+        return;
+    }
+
+    // Create a temporary anchor element
+    const link = document.createElement('a');
+    link.href = currentImageSrc;
+    
+    // Extract filename from path or use title
+    let filename = currentImageTitle.toLowerCase().replace(/[^a-z0-9]/g, '-') + '.jpg';
+    link.download = filename;
+
+    // Trigger download
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+// ========================================
+// KEYBOARD SHORTCUTS
+// ========================================
+
+document.addEventListener('keydown', function(e) {
+    // ESC key closes lightbox
+    if (e.key === 'Escape') {
+        closeLightbox();
+    }
+});
 
 </script>
 
