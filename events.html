@@ -6,7 +6,7 @@
 
 <title>ST JOSEPH'S MBIUNI YOUTH | Events</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
@@ -22,6 +22,7 @@ font-family:'Montserrat',sans-serif;
 --secondary:#FFD54F;
 --light:#f5f8fc;
 --dark:#132238;
+--danger:#E74C3C;
 }
 
 body{
@@ -104,61 +105,395 @@ max-width:700px;
 margin:auto;
 }
 
-/* EVENTS */
+/* ========================================
+   COUNTDOWN TIMER
+   ======================================== */
 
-.events{
+.countdown-section{
 width:90%;
 max-width:1100px;
-margin:60px auto;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:25px;
+margin:-30px auto 40px;
+background:linear-gradient(135deg,var(--primary),#1E88E5);
+color:white;
+padding:30px 40px;
+border-radius:20px;
+box-shadow:0 10px 40px rgba(11,61,145,.3);
+text-align:center;
+position:relative;
+z-index:2;
 }
 
-.card{
-background:white;
-padding:30px;
-border-radius:15px;
-box-shadow:0 8px 20px rgba(0,0,0,.12);
+.countdown-section h3{
+font-size:18px;
+font-weight:600;
+margin-bottom:15px;
+letter-spacing:1px;
+}
+
+.countdown-section h3 span{
+color:var(--secondary);
+}
+
+.countdown-timer{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.countdown-timer .time-block{
+background:rgba(255,255,255,.15);
+padding:12px 20px;
+border-radius:12px;
+min-width:70px;
+backdrop-filter:blur(4px);
+}
+
+.countdown-timer .time-block .number{
+display:block;
+font-size:36px;
+font-weight:900;
+line-height:1.2;
+}
+
+.countdown-timer .time-block .label{
+font-size:12px;
+opacity:.8;
+text-transform:uppercase;
+letter-spacing:1px;
+}
+
+.countdown-ended{
+background:var(--secondary);
+color:var(--primary);
+padding:12px 30px;
+border-radius:12px;
+font-weight:800;
+font-size:20px;
+display:none;
+}
+
+/* ========================================
+   EVENTS TABLE
+   ======================================== */
+
+.events-section{
+width:90%;
+max-width:1100px;
+margin:40px auto;
+}
+
+.events-section h2{
+font-size:32px;
+color:var(--primary);
+margin-bottom:8px;
 text-align:center;
+}
+
+.events-section h2::after{
+content:"";
+display:block;
+width:60px;
+height:4px;
+background:var(--secondary);
+margin:10px auto 0;
+border-radius:4px;
+}
+
+.events-section .subtitle{
+text-align:center;
+color:#666;
+margin-bottom:30px;
+font-size:16px;
+}
+
+.table-wrapper{
+overflow-x:auto;
+background:white;
+border-radius:20px;
+box-shadow:0 8px 30px rgba(0,0,0,.1);
+padding:0;
+}
+
+.events-table{
+width:100%;
+border-collapse:collapse;
+font-size:15px;
+}
+
+.events-table thead{
+background:var(--primary);
+color:white;
+}
+
+.events-table th{
+padding:16px 20px;
+text-align:left;
+font-weight:700;
+font-size:14px;
+letter-spacing:0.5px;
+}
+
+.events-table th:first-child{
+border-radius:20px 0 0 0;
+}
+
+.events-table th:last-child{
+border-radius:0 20px 0 0;
+}
+
+.events-table td{
+padding:16px 20px;
+border-bottom:1px solid #eee;
+vertical-align:middle;
+}
+
+.events-table tbody tr{
 transition:.3s;
 }
 
-.card:hover{
-transform:translateY(-8px);
+.events-table tbody tr:hover{
+background:#f0f6fc;
 }
 
-.card h2{
+.events-table tbody tr:last-child td{
+border-bottom:none;
+}
+
+.events-table .event-status{
+display:inline-block;
+padding:4px 14px;
+border-radius:20px;
+font-size:11px;
+font-weight:700;
+text-transform:uppercase;
+letter-spacing:0.5px;
+}
+
+.status-upcoming{
+background:rgba(46,204,113,.15);
+color:#27AE60;
+}
+
+.status-ongoing{
+background:rgba(241,196,15,.15);
+color:#F39C12;
+}
+
+.status-past{
+background:rgba(231,76,60,.15);
+color:#E74C3C;
+}
+
+.events-table .event-day{
+font-weight:700;
 color:var(--primary);
-margin:15px 0;
 }
 
-.card p{
+.events-table .event-name{
+font-weight:600;
+}
+
+.events-table .event-venue{
 color:#555;
 }
 
-/* CTA */
+.events-table .event-time{
+font-weight:600;
+color:#1E88E5;
+}
+
+.events-table .event-actions a{
+display:inline-block;
+padding:5px 16px;
+background:var(--primary);
+color:white;
+border-radius:20px;
+font-size:12px;
+font-weight:600;
+text-decoration:none;
+transition:.3s;
+}
+
+.events-table .event-actions a:hover{
+background:#1E88E5;
+transform:translateY(-2px);
+}
+
+.no-events{
+text-align:center;
+padding:40px;
+color:#999;
+font-style:italic;
+}
+
+/* ========================================
+   CALENDAR VIEW
+   ======================================== */
+
+.calendar-section{
+width:90%;
+max-width:1100px;
+margin:40px auto 60px;
+background:white;
+border-radius:20px;
+padding:30px;
+box-shadow:0 8px 30px rgba(0,0,0,.1);
+}
+
+.calendar-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+flex-wrap:wrap;
+gap:15px;
+}
+
+.calendar-header h2{
+color:var(--primary);
+font-size:24px;
+}
+
+.calendar-nav{
+display:flex;
+gap:10px;
+}
+
+.calendar-nav button{
+padding:8px 20px;
+border:none;
+border-radius:30px;
+background:var(--primary);
+color:white;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+font-size:14px;
+}
+
+.calendar-nav button:hover{
+background:#1E88E5;
+transform:translateY(-2px);
+}
+
+.calendar-nav .month-label{
+font-weight:700;
+font-size:18px;
+color:var(--dark);
+padding:8px 16px;
+}
+
+.calendar-grid{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:2px;
+}
+
+.calendar-grid .day-name{
+padding:12px 0;
+text-align:center;
+font-weight:700;
+font-size:13px;
+color:var(--primary);
+background:#f0f6fc;
+border-radius:8px;
+}
+
+.calendar-grid .day-cell{
+padding:10px 0;
+text-align:center;
+border-radius:8px;
+cursor:pointer;
+transition:.3s;
+font-size:14px;
+font-weight:500;
+min-height:60px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+}
+
+.calendar-grid .day-cell:hover{
+background:#f0f6fc;
+}
+
+.calendar-grid .day-cell.empty{
+cursor:default;
+background:transparent;
+}
+
+.calendar-grid .day-cell.today{
+background:var(--primary);
+color:white;
+font-weight:800;
+}
+
+.calendar-grid .day-cell.today:hover{
+background:var(--primary);
+}
+
+.calendar-grid .day-cell.has-event{
+position:relative;
+font-weight:700;
+color:var(--primary);
+}
+
+.calendar-grid .day-cell.has-event::after{
+content:"•";
+position:absolute;
+bottom:2px;
+color:var(--secondary);
+font-size:20px;
+}
+
+.calendar-grid .day-cell .event-dot{
+width:6px;
+height:6px;
+background:var(--secondary);
+border-radius:50%;
+margin-top:2px;
+}
+
+/* ========================================
+   CTA SECTION
+   ======================================== */
 
 .cta{
 background:var(--primary);
 color:white;
 text-align:center;
 padding:60px 20px;
+margin:0;
 }
 
 .cta h2{
 margin-bottom:15px;
+font-size:32px;
+}
+
+.cta p{
+max-width:600px;
+margin:0 auto 20px;
+opacity:.9;
 }
 
 .cta a{
 display:inline-block;
-margin-top:20px;
-padding:14px 30px;
+padding:14px 40px;
 background:var(--secondary);
 color:var(--primary);
 text-decoration:none;
 border-radius:30px;
-font-weight:bold;
+font-weight:800;
+transition:.3s;
+}
+
+.cta a:hover{
+background:#FFC107;
+transform:translateY(-3px);
+box-shadow:0 8px 30px rgba(255,213,79,.4);
 }
 
 /* FOOTER */
@@ -167,7 +502,7 @@ footer{
 background:var(--primary);
 color:white;
 text-align:center;
-padding:25px;
+padding:30px 20px;
 }
 
 footer .footer-brand{
@@ -208,6 +543,63 @@ margin:8px;
 font-size:34px;
 }
 
+.countdown-section{
+padding:20px;
+margin:-20px auto 30px;
+}
+
+.countdown-timer .time-block{
+padding:8px 14px;
+min-width:55px;
+}
+
+.countdown-timer .time-block .number{
+font-size:28px;
+}
+
+.events-table{
+font-size:13px;
+}
+
+.events-table th,
+.events-table td{
+padding:12px 14px;
+}
+
+.calendar-section{
+padding:16px;
+}
+
+.calendar-grid .day-cell{
+padding:6px 0;
+font-size:12px;
+min-height:40px;
+}
+
+.calendar-header{
+flex-direction:column;
+text-align:center;
+}
+
+}
+
+@media(max-width:480px){
+.hero h1{
+font-size:28px;
+}
+.events-table th,
+.events-table td{
+padding:8px 10px;
+font-size:12px;
+}
+.events-table .event-actions a{
+padding:3px 12px;
+font-size:10px;
+}
+.calendar-grid .day-cell{
+font-size:11px;
+min-height:35px;
+}
 }
 </style>
 
@@ -219,7 +611,7 @@ font-size:34px;
 
 <div class="logo">
 
-<img src="C:\Users\nzaup\OneDrive\Desktop\website\IMG_20241208_161409.jpg" alt="St. Joseph's Mbiuni Youth" class="logo-img">
+<img src="images/youth-group.jpg" alt="St. Joseph's Mbiuni Youth" class="logo-img">
 
 <div>
 <h2>ST JOSEPH'S MBIUNI YOUTH</h2>
@@ -242,69 +634,112 @@ font-size:34px;
 
 <section class="hero">
 
-<h1>Youth Events & Activities</h1>
+<h1>📅 Youth Events & Activities</h1>
 
 <p>
-Growing together in Christ through fellowship, prayer and service.
+Stay updated on all our upcoming events, activities, and fellowship opportunities.
 </p>
 
 </section>
 
-<section class="events">
+<!-- ===== COUNTDOWN TIMER ===== -->
+<div class="countdown-section">
 
-<div class="card">
+<h3>⏳ Next Event: <span id="nextEventName">Youth Festival 2026</span></h3>
 
-<h2>🏠 Home Visits</h2>
+<div class="countdown-timer" id="countdownTimer">
 
-<p>
-Visiting members and families to pray together, encourage one another and strengthen our Christian community.
-</p>
+<div class="time-block">
+<span class="number" id="days">00</span>
+<span class="label">Days</span>
+</div>
+
+<div class="time-block">
+<span class="number" id="hours">00</span>
+<span class="label">Hours</span>
+</div>
+
+<div class="time-block">
+<span class="number" id="minutes">00</span>
+<span class="label">Minutes</span>
+</div>
+
+<div class="time-block">
+<span class="number" id="seconds">00</span>
+<span class="label">Seconds</span>
+</div>
 
 </div>
 
-<div class="card">
-
-<h2>🎉 Festivals</h2>
-
-<p>
-Participating in parish celebrations, youth festivals and special Church events with joy and unity.
-</p>
-PARISH FESTIVALS ON 22-08-2026
-<P>
-VENUE: MBIUNI CENTRE
-</p>
+<div class="countdown-ended" id="countdownEnded">
+🎉 Event is happening now!
+</div>
 
 </div>
 
-<div class="card">
+<!-- ===== EVENTS TABLE ===== -->
+<section class="events-section">
 
-<h2>🚶 Faith Walks</h2>
+<h2>📋 Upcoming Events</h2>
 
-<p>
-Walking together in faith through pilgrimages, nature walks and spiritual reflections.
-</p>
+<p class="subtitle">Plan ahead and join us for these youth activities</p>
 
-</div>
+<div class="table-wrapper">
 
-<div class="card">
+<table class="events-table">
 
-<h2>🤝 Youth Meetings</h2>
+<thead>
+<tr>
+<th>#</th>
+<th>Day</th>
+<th>Event</th>
+<th>Venue</th>
+<th>Time</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
 
-<p>
-Regular meetings for prayer, planning activities, Bible sharing and strengthening friendships.
-</p>
+<tbody id="eventsTableBody">
+
+<!-- Events will be populated by JavaScript -->
+
+</tbody>
+
+</table>
 
 </div>
 
 </section>
 
+<!-- ===== CALENDAR VIEW ===== -->
+<section class="calendar-section">
+
+<div class="calendar-header">
+<h2>📅 Calendar</h2>
+<div class="calendar-nav">
+<button onclick="changeMonth(-1)">←</button>
+<span class="month-label" id="calendarMonthLabel">August 2026</span>
+<button onclick="changeMonth(1)">→</button>
+</div>
+</div>
+
+<div class="calendar-grid" id="calendarGrid">
+
+<!-- Calendar will be populated by JavaScript -->
+
+</div>
+
+</section>
+
+<!-- ===== CTA SECTION ===== -->
 <section class="cta">
 
-<h2>Join Our Youth Activities</h2>
+<h2>🙏 Join Our Youth Activities</h2>
 
-<p>Everyone is welcome to grow with us in faith, friendship and service.</p>
+<p>Everyone is welcome to grow with us in faith, friendship and service. Come be part of our vibrant youth community!</p>
 
-<a href="contact.html">Become a Member</a>
+<a href="contact.html">Become a Member →</a>
 
 </section>
 
@@ -320,7 +755,254 @@ Regular meetings for prayer, planning activities, Bible sharing and strengthenin
 
 <script>
 
+// ========================================
+// DATA
+// ========================================
+
+const events = [
+    {
+        id: 1,
+        day: "22 July 2026",
+        event: "🏠 Home Visits",
+        venue: "Mbiuni Parish",
+        time: "9:00 AM",
+        status: "upcoming",
+        date: new Date(2026, 6, 22).getTime() // July 22, 2026
+    },
+    {
+        id: 2,
+        day: "5 August 2026",
+        event: "🎉 Youth Festival 2026",
+        venue: "St. Joseph's Grounds",
+        time: "10:00 AM",
+        status: "upcoming",
+        date: new Date(2026, 7, 5).getTime()
+    },
+    {
+        id: 3,
+        day: "Every Sunday",
+        event: "🚶 Faith Walks",
+        venue: "Meet at Church",
+        time: "6:00 AM",
+        status: "ongoing",
+        date: null // Recurring event
+    },
+    {
+        id: 4,
+        day: "15 July 2026",
+        event: "🤝 Youth Meeting",
+        venue: "Youth Hall",
+        time: "4:00 PM",
+        status: "past",
+        date: new Date(2026, 6, 15).getTime()
+    },
+    {
+        id: 5,
+        day: "10 August 2026",
+        event: "🙏 Prayer Night",
+        venue: "Church Sanctuary",
+        time: "7:00 PM",
+        status: "upcoming",
+        date: new Date(2026, 7, 10).getTime()
+    },
+    {
+        id: 6,
+        day: "20 August 2026",
+        event: "❤️ Charity Visit",
+        venue: "Mbiuni Community",
+        time: "8:00 AM",
+        status: "upcoming",
+        date: new Date(2026, 7, 20).getTime()
+    }
+];
+
+// ========================================
+// AUTO YEAR
+// ========================================
+
 document.getElementById("year").textContent = new Date().getFullYear();
+
+// ========================================
+// COUNTDOWN TIMER
+// ========================================
+
+function startCountdown(targetDate) {
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+    const endedEl = document.getElementById('countdownEnded');
+    const timerEl = document.getElementById('countdownTimer');
+
+    function update() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+            timerEl.style.display = 'none';
+            endedEl.style.display = 'block';
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        daysEl.textContent = String(days).padStart(2, '0');
+        hoursEl.textContent = String(hours).padStart(2, '0');
+        minutesEl.textContent = String(minutes).padStart(2, '0');
+        secondsEl.textContent = String(seconds).padStart(2, '0');
+    }
+
+    update();
+    setInterval(update, 1000);
+}
+
+// Find the next upcoming event
+function getNextEvent() {
+    const now = new Date().getTime();
+    const upcoming = events
+        .filter(e => e.status !== 'past' && e.date !== null)
+        .sort((a, b) => a.date - b.date)
+        .filter(e => e.date > now);
+
+    return upcoming.length > 0 ? upcoming[0] : null;
+}
+
+const nextEvent = getNextEvent();
+if (nextEvent) {
+    document.getElementById('nextEventName').textContent = nextEvent.event.replace(/[^\w\s]/g, '').trim();
+    startCountdown(nextEvent.date);
+}
+
+// ========================================
+// RENDER EVENTS TABLE
+// ========================================
+
+function renderEventsTable() {
+    const tbody = document.getElementById('eventsTableBody');
+    const now = new Date().getTime();
+
+    // Sort events: upcoming first, then ongoing, then past
+    const sorted = [...events].sort((a, b) => {
+        const order = { 'upcoming': 0, 'ongoing': 1, 'past': 2 };
+        return order[a.status] - order[b.status];
+    });
+
+    let html = '';
+    let count = 0;
+
+    sorted.forEach(event => {
+        count++;
+        const statusLabels = {
+            'upcoming': '<span class="event-status status-upcoming">🔵 Upcoming</span>',
+            'ongoing': '<span class="event-status status-ongoing">🟡 Ongoing</span>',
+            'past': '<span class="event-status status-past">⚪ Past</span>'
+        };
+
+        const isPast = event.status === 'past';
+        const actionBtn = isPast ? 
+            '<span style="color:#999;font-size:12px;">📋 Completed</span>' :
+            `<a href="contact.html">📝 RSVP</a>`;
+
+        html += `
+            <tr>
+                <td>${count}</td>
+                <td class="event-day">${event.day}</td>
+                <td class="event-name">${event.event}</td>
+                <td class="event-venue">${event.venue}</td>
+                <td class="event-time">${event.time}</td>
+                <td>${statusLabels[event.status]}</td>
+                <td class="event-actions">${actionBtn}</td>
+            </tr>
+        `;
+    });
+
+    tbody.innerHTML = html;
+}
+
+renderEventsTable();
+
+// ========================================
+// CALENDAR
+// ========================================
+
+let currentMonth = new Date().getMonth();
+let currentYear = new Date().getFullYear();
+
+// Events with dates mapped
+const calendarEvents = events
+    .filter(e => e.date !== null)
+    .map(e => new Date(e.date));
+
+function renderCalendar(month, year) {
+    const grid = document.getElementById('calendarGrid');
+    const label = document.getElementById('calendarMonthLabel');
+
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
+                        'July', 'August', 'September', 'October', 'November', 'December'];
+    label.textContent = `${monthNames[month]} ${year}`;
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const today = new Date();
+
+    let html = '';
+
+    // Day names
+    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    dayNames.forEach(name => {
+        html += `<div class="day-name">${name}</div>`;
+    });
+
+    // Empty cells before first day
+    for (let i = 0; i < firstDay; i++) {
+        html += `<div class="day-cell empty"></div>`;
+    }
+
+    // Days
+    for (let day = 1; day <= daysInMonth; day++) {
+        const dateObj = new Date(year, month, day);
+        const isToday = dateObj.toDateString() === today.toDateString();
+
+        // Check if this day has an event
+        let hasEvent = false;
+        calendarEvents.forEach(eDate => {
+            if (eDate.toDateString() === dateObj.toDateString()) {
+                hasEvent = true;
+            }
+        });
+
+        let classes = 'day-cell';
+        if (isToday) classes += ' today';
+        if (hasEvent) classes += ' has-event';
+
+        const dot = hasEvent ? `<span class="event-dot"></span>` : '';
+
+        html += `<div class="${classes}" onclick="alert('${day} ${monthNames[month]} ${year}')">
+            ${day}
+            ${dot}
+        </div>`;
+    }
+
+    grid.innerHTML = html;
+}
+
+function changeMonth(delta) {
+    currentMonth += delta;
+    if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+    } else if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear--;
+    }
+    renderCalendar(currentMonth, currentYear);
+}
+
+// Initial calendar render
+renderCalendar(currentMonth, currentYear);
 
 </script>
 
